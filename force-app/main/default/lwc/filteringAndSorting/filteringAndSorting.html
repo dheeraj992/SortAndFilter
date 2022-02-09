@@ -1,0 +1,47 @@
+<template>
+  
+    <lightning-card title="Filter And Sort">
+        <div class="slds-var-m-around_medium" style="width: 500px;">
+            <lightning-input type="text" label="Filter" onkeyup={filterdata}>
+            </lightning-input>
+        </div>
+        
+        <div class="slds-var-m-around_small" style="width:500px;">
+            <lightning-combobox label="Select" name="filterBy" options={options}
+            value={filterBy} onchange={handlechange}>
+            </lightning-combobox>
+           
+        </div>
+        
+        <div class="slds-var-m-around_small" style="width:500px;">
+            <lightning-combobox label="SortBy" name="SortedBy" options={options}
+            value={SortedBy} onchange={handleSorting}>
+            </lightning-combobox>
+           
+        </div>
+        <div class="slds-var-m-around_medium">
+            <table>
+                <thead>
+                    <tr>
+                      <template for:each={headings} for:item="heading">
+                          <th key={heading}>{heading}</th>
+                      </template>  
+                    </tr>
+                </thead>
+                <tbody>
+                    <template if:true={filteredData}>
+                        <template for:each={filteredData} for:item="con">
+                            <tr key={con.id}>
+                                <td>{con.Id}</td>
+                                <td>{con.Name}</td>
+                                <td>{con.Title}</td>
+                                <td>{con.Email}</td>
+                            </tr>
+                        </template> 
+                    </template>
+                   
+                </tbody>
+            </table>
+        </div>
+    </lightning-card>
+</template>
